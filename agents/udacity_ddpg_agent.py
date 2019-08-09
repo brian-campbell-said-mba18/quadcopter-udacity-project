@@ -1,3 +1,9 @@
+# This imports Task.
+from task import Task
+
+# This imports numpy.
+import numpy as np
+
 # This imports the actor from udacity_ddpg_actor.py.
 from actors.udacity_ddpg_actor import Actor
 
@@ -45,7 +51,7 @@ class DDPG():
         # Algorithm parameters
         self.gamma = 0.99  # discount factor
         self.tau = 0.01  # for soft update of target parameters
-
+         
     def reset_episode(self):
         self.noise.reset()
         state = self.task.reset()
@@ -53,7 +59,7 @@ class DDPG():
         return state
 
     def step(self, action, reward, next_state, done):
-         # Save experience / reward
+        # Save experience / reward
         self.memory.add(self.last_state, action, reward, next_state, done)
 
         # Learn, if enough samples are available in memory

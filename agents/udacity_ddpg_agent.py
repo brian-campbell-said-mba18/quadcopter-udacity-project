@@ -1,3 +1,20 @@
+# This imports os and sets the path.
+import os
+path = "OneDrive\Documents\Udacity\ml-degree\ml-projects\ml-quadcopter-project" 
+os.chdir(path)
+
+# This imports the actor from udacity_ddpg_actor.py.
+from agents.udacity_ddpg_agent import Actor
+
+# This imports the critic from udacity_ddpg_critic.py.
+from critics.udacity_ddpg_critic import Critic
+
+# This imports the replay buffer from udacity_replay_buffer.py.
+from replay.udacity_replay_buffer import ReplayBuffer
+
+# This imports the noise from udacity_noise.py.
+from noise.udacity_noise import OUNoise
+
 class DDPG():
     """Reinforcement Learning agent that learns using DDPG."""
     def __init__(self, task):

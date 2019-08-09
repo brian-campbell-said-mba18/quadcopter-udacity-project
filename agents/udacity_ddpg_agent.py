@@ -1,10 +1,5 @@
-# This imports os and sets the path.
-import os
-path = "OneDrive\Documents\Udacity\ml-degree\ml-projects\ml-quadcopter-project" 
-os.chdir(path)
-
 # This imports the actor from udacity_ddpg_actor.py.
-from agents.udacity_ddpg_agent import Actor
+from actors.udacity_ddpg_actor import Actor
 
 # This imports the critic from udacity_ddpg_critic.py.
 from critics.udacity_ddpg_critic import Critic

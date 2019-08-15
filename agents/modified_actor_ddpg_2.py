@@ -5,7 +5,7 @@ from task import Task
 import numpy as np
 
 # This imports the actor from udacity_ddpg_actor.py.
-from actors.udacity_ddpg_actor import Actor
+from actors.modified_udacity_actor import TweakedActor
 
 # This imports the critic from udacity_ddpg_critic.py.
 from critics.udacity_ddpg_critic import Critic
@@ -26,8 +26,8 @@ class DDPG():
         self.action_high = task.action_high
 
         # Actor (Policy) Model
-        self.actor_local = Actor(self.state_size, self.action_size, self.action_low, self.action_high)
-        self.actor_target = Actor(self.state_size, self.action_size, self.action_low, self.action_high)
+        self.actor_local = TweakedActor(self.state_size, self.action_size, self.action_low, self.action_high)
+        self.actor_target = TweakedActor(self.state_size, self.action_size, self.action_low, self.action_high)
 
         # Critic (Value) Model
         self.critic_local = Critic(self.state_size, self.action_size)

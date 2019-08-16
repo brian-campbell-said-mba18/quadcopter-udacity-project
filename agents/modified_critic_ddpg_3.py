@@ -8,7 +8,7 @@ import numpy as np
 from actors.modified_udacity_actor import TweakedActor
 
 # This imports the critic from udacity_ddpg_critic.py.
-from critics.modified_critic.py import TweakedCritic
+from critics.modified_critic import TweakedCritic
 
 # This imports the replay buffer from udacity_replay_buffer.py.
 from replay.udacity_replay_buffer import ReplayBuffer

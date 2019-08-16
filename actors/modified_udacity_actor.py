@@ -69,3 +69,4 @@ class TweakedActor:
         
 # REFERENCES
 # Reference 1 - https://github.com/harshitandro/RL-Quadcopter/blob/master/agents/actor.py
+# Reference 2 - Machine Learning Engineer Nanodegree Program, Semester 2, Deep Neural Networks, Dropout

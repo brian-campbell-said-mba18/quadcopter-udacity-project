@@ -28,11 +28,18 @@ class TweakedActor:
         """Build an actor (policy) network that maps states -> actions."""
         # Define input layer (states)
         states = layers.Input(shape=(self.state_size,), name='states')
-
+        
+        # See Reference 1 at the end of the document.
         # Add hidden layers
         net = layers.Dense(units=32, activation='relu')(states)
+        net = layers.BatchNormalization()(net)
+        net = layers.Activation("relu")(net)
         net = layers.Dense(units=64, activation='relu')(net)
+        net = layers.BatchNormalization()(net)
+        net = layers.Activation("relu")(net)
         net = layers.Dense(units=32, activation='relu')(net)
+        net = layers.BatchNormalization()(net)
+        net = layers.Activation("relu")(net)
 
         # Try different layer sizes, activations, add batch normalization, regularizers, etc.
 
@@ -60,3 +67,6 @@ class TweakedActor:
             inputs=[self.model.input, action_gradients, K.learning_phase()],
             outputs=[],
             updates=updates_op)
+        
+# REFERENCES
+# Reference 1 - https://github.com/harshitandro/RL-Quadcopter/blob/master/agents/actor.py

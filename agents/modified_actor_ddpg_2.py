@@ -16,7 +16,7 @@ from replay.udacity_replay_buffer import ReplayBuffer
 # This imports the noise from udacity_noise.py.
 from noise.udacity_noise import OUNoise
 
-class DDPG():
+class DDPG2():
     """Reinforcement Learning agent that learns using DDPG."""
     def __init__(self, task):
         self.task = task

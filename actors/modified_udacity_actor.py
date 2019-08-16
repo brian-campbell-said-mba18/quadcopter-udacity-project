@@ -29,15 +29,14 @@ class TweakedActor:
         # Define input layer (states)
         states = layers.Input(shape=(self.state_size,), name='states')
         
-        # See Reference 1 at the end of the document.
+        # This code comes from Reference 1 (see document's end).
         # Add hidden layers
         net = layers.Dense(units=32, activation='relu')(states)
+        net = layers.Dropout(0.25)(net)
         net = layers.BatchNormalization()(net)
         net = layers.Activation("relu")(net)
-        net = layers.Dense(units=64, activation='relu')(net)
-        net = layers.BatchNormalization()(net)
-        net = layers.Activation("relu")(net)
-        net = layers.Dense(units=32, activation='relu')(net)
+        net = layers.Dense(units=16, activation='relu')(net)
+        net = layers.Dropout(0.25)(net)
         net = layers.BatchNormalization()(net)
         net = layers.Activation("relu")(net)
 
@@ -61,7 +60,7 @@ class TweakedActor:
         # Incorporate any additional losses here (e.g. from regularizers)
 
         # Define optimizer and training function
-        optimizer = optimizers.Adam()
+        optimizer = optimizers.Adam(lr=0.0001)
         updates_op = optimizer.get_updates(params=self.model.trainable_weights, loss=loss)
         self.train_fn = K.function(
             inputs=[self.model.input, action_gradients, K.learning_phase()],

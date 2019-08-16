@@ -24,14 +24,22 @@ class TweakedCritic:
         # Define input layers
         states = layers.Input(shape=(self.state_size,), name='states')
         actions = layers.Input(shape=(self.action_size,), name='actions')
-
+        
+        # This code comes from References 1 and 2 (see document's end).
         # Add hidden layer(s) for state pathway
         net_states = layers.Dense(units=32, activation='relu')(states)
         net_states = layers.Dense(units=64, activation='relu')(net_states)
-
+        net_states = layers.Dropout(0.25)(net_states)
+        net_states = layers.BatchNormalization()(net_states)
+        net_states = layers.Activation("relu")(net_states)
+        
+        # This code comes from References 1 and 2 (see document's end).
         # Add hidden layer(s) for action pathway
         net_actions = layers.Dense(units=32, activation='relu')(actions)
         net_actions = layers.Dense(units=64, activation='relu')(net_actions)
+        net_actions = layers.Dropout(0.25)(net_actions)
+        net_actions = layers.BatchNormalization()(net_actions)
+        net_actions = layers.Activation("relu")(net_actions)
 
         # Try different layer sizes, activations, add batch normalization, regularizers, etc.
 
@@ -58,3 +66,7 @@ class TweakedCritic:
         self.get_action_gradients = K.function(
             inputs=[*self.model.input, K.learning_phase()],
             outputs=action_gradients)
+        
+# REFERENCES
+# Reference 1 - https://github.com/harshitandro/RL-Quadcopter/blob/master/agents/actor.py
+# Reference 2 - Machine Learning Engineer Nanodegree Program, Semester 2, Deep Neural Networks, Dropout
